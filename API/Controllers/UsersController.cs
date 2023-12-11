@@ -18,13 +18,13 @@ public class UsersController : ControllerBase
         _context = context;
     }
 
-    [HttpGet]
+    [HttpGet]   // api/users
     public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
     {
         var users = await _context.Users.ToListAsync();
         return users;
     }
-    [HttpGet("{id}")] // api/users/2
+    [HttpGet("{id}")] // api/user/2
     public async Task<ActionResult<AppUser>> GetUser(int id)
     {
         var user = await _context.Users.Where(user => user.Id == id).ToArrayAsync();
@@ -33,6 +33,18 @@ public class UsersController : ControllerBase
             return NotFound(user);
         }
         return Ok(user[0]);
+    }
+
+    [HttpDelete("delete/{id}")] // api/user/2
+    public async Task<ActionResult<AppUser>> DeleteUser(int id)
+    {
+        var user = await _context.Users.FindAsync(id);
+        if (user == null)
+        {
+            return NotFound(user);
+        }
+        _context.Users.Remove(user);
+        return Ok(user);
     }
 
 
