@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { User } from 'src/app/_interfaces/user-name';
 import { AccountService } from 'src/app/_services/account.service';
 
 @Component({
@@ -12,7 +14,8 @@ export class RegisterComponent {
 
   public model: any = {};
 
-  constructor(private accountService: AccountService){
+  constructor(private accountService: AccountService,
+     private toaster: ToastrService){
     
   }
 
@@ -20,8 +23,10 @@ export class RegisterComponent {
     if (!this.validateRegistration()){
       return;
     }
-    this.accountService.register(this.model);
-    console.log('registred');
+    this.accountService.register(this.model).subscribe({
+      next: _ => this.cancel(),
+      error: (result: User) => this.toaster.error(result.error),      
+    });
   }
 
   public cancel(): void {
@@ -34,11 +39,11 @@ export class RegisterComponent {
   private validateRegistration(): boolean{
     let valid = true;
     if (!this.model.username){
-      console.log("user name is empty");
+      this.toaster.error("user name is empty");
       return false;
     }
     if (this.users?.find(user => user == this.model.username)){
-      console.log("user name is occupied");
+      this.toaster.error("user name is occupied");
       return false;
     }
     return true;

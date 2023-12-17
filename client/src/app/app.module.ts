@@ -8,11 +8,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './nav/nav.component';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayersTabComponent } from './components/layers-tab/layers-tab.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AddReportComponent } from './components/reports/add-report/add-report.component';
+import { ReportsListComponent } from './components/reports/reports-list/reports-list.component';
+import { LayersListComponent } from './components/Layers/layers-list/layers-list.component';
+import { AddLayersComponent } from './components/Layers/add-layers/add-layers.component';
+import { SharedModule } from './_modules/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,17 +25,21 @@ import { RegisterComponent } from './components/register/register.component';
     NavComponent,
     LayersTabComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddReportComponent,
+    ReportsListComponent,
+    LayersListComponent,
+    AddLayersComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    BsDropdownModule.forRoot(),
-    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

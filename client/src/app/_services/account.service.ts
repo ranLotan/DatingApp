@@ -32,12 +32,10 @@ export class AccountService {
   public logOut(): void{
     this.currentUserSoure.next(null);
     localStorage.removeItem('user');
+
   }
 
-  public register(model: any): void{
-    this.client.post<User>(this.loginUrl + 'account/register', model).subscribe({
-      next: response => console.log(response),
-      error: response => console.log(response)
-    });
+  public register(model: any): Observable<User>{
+    return this.client.post<User>(this.loginUrl + 'account/register', model);
   }
 }

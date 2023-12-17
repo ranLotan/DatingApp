@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Subscription, from } from 'rxjs';
 import { AccountService } from '../_services/account.service';
 import { User as User } from '../_interfaces/user-name';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
@@ -18,7 +20,9 @@ export class NavComponent implements OnInit, OnDestroy {
   private userSubscription: Subscription | null = null;
   
   constructor( 
-      public accountService : AccountService, 
+      public accountService : AccountService,
+      private router: Router,
+      private toaster: ToastrService,
     ){}
     
     ngOnInit(): void {
@@ -42,12 +46,13 @@ export class NavComponent implements OnInit, OnDestroy {
   public login() {
     console.log(this.model);
     this.accountService.login(this.model).subscribe({
-      next: (result: User) => console.log(result),
-      error: (result: User) => console.log(result)
+      next: _ => this.router.navigateByUrl('/reports'),
+      error: (result: User) => this.toaster.error(result.error)
     });
   }
 
   public logOut(): void{
     this.accountService.logOut();
+    this.router.navigateByUrl('/');
   }
 }
