@@ -1,9 +1,10 @@
-<h1> {{title}}</h1>
-<ul>
-    <li *ngFor="let user of users">
-        <span>
-            {{user.id}} - {{user.userName}}
-        </span>
-    </li>
-</ul>
-<add-user></add-user>
+
+<div class="wrapper">
+    <div class="header">
+        <app-nav></app-nav>
+    </div>
+    <div class="content">
+      <app-home></app-home> 
+    </div>
+    <div class="box footer">Footer</div>
+</div>

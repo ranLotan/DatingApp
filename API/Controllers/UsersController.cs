@@ -20,9 +20,9 @@ public class UsersController : BaseApiController
 
     [AllowAnonymous]
     [HttpGet]   // api/users
-    public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
+    public async Task<ActionResult<IEnumerable<string>>> GetUsers()
     {
-        var users = await _context.Users.ToListAsync();
+        var users = await _context.Users.Select(user => user.UserName).ToListAsync();
         return users;
     }
     [HttpGet("{id}")] // api/user/2

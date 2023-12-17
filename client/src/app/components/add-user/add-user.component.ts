@@ -1,6 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { FormBuilder, FormGroup, Validators ,ReactiveFormsModule  } from '@angular/forms';
-import { AppModule } from '../app.module';
+import { AppModule } from '../../app.module';
 
 // import { CartService } from '../cart.service';
 
@@ -13,15 +13,15 @@ import { AppModule } from '../app.module';
 })
 
 export class AddUserComponent {
-  userForm!: FormGroup;
+  // userForm!: FormGroup;
   constructor(
     private formBuilder :FormBuilder,
   ){}
 
   ngOnInit(): void {
-    this.userForm = this.formBuilder.group({
-      username: ['', Validators.required, Validators.minLength(3)]
-    });
+  //   this.userForm = this.formBuilder.group({
+  //     username: ['', Validators.required, Validators.minLength(3)]
+  //   });
   }
 
   public onSubmit(): void {

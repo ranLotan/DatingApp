@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Carousel</a>
+
+        <!-- side Menu -->
+        <ul *ngIf="accountService.currentUser$ | async" class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Disabled</a>
+          </li>
+        </ul>
+
+        <!-- log In  -->
+        <form *ngIf="!(accountService.currentUser$ | async)" #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off">
+          <input name="username" [(ngModel)]="model.username" class="form-control me-2" type="text" placeholder="User Name" aria-label="User Name">
+          <input name="password" [(ngModel)]="model.password" class="form-control me-2" type="password" placeholder="Password" aria-label="Password">
+            <button class="btn btn-outline-success" type="submit">Login</button>
+        </form>
+
+         <!-- Menu DropDown  -->  
+        <div *ngIf="accountService.currentUser$ | async" class="btn-group" dropdown>
+          <button type="button" class="btn btn-primary">Menu</button>
+          <button id="button-split" type="button" dropdownToggle class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                  aria-controls="dropdown-split">
+            <span class="sr-only visually-hidden">Split button!</span>
+          </button>
+          <ul id="dropdown-split" *dropdownMenu class="dropdown-menu"
+              role="menu" aria-labelledby="button-split">
+            <li role="menuitem"><a class="dropdown-item" href="#">Edit Profile</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Find User {{accountService.currentUser$ | async}}</a></li>
+            <li class="divider dropdown-divider"></li>
+            <li role="menuitem" ><a class="dropdown-item" href="#" (click)="logOut()">Log Out</a></li>
+          </ul>
+        </div>
+    </div>
+  </nav>
