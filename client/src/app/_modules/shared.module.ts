@@ -13,13 +13,11 @@ import { GoogleMapsModule } from '@angular/google-maps';
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
-    }),
-    GoogleMapsModule
+    })
   ],
   exports: [
     BsDropdownModule,
     ToastrModule,
-    GoogleMapsModule
   ]
 })
 export class SharedModule { }
