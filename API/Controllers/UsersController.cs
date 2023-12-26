@@ -1,52 +1,33 @@
-﻿using API.Data;
-using API.Entities;
+﻿using API.DTO;
+using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
 [Authorize]
 public class UsersController : BaseApiController
 {
-    private readonly ILogger<UsersController> _logger;
-    private readonly DataContext _context;
+    private IUserRepository _userRepository;
 
-    public UsersController(DataContext context, ILogger<UsersController> logger)
+    public UsersController(IUserRepository userRepository)
     {
-        _logger = logger;
-        _context = context;
+        _userRepository = userRepository;
     }
 
-    [AllowAnonymous]
     [HttpGet]   // api/users
-    public async Task<ActionResult<IEnumerable<string>>> GetUsers()
+    public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
     {
-        var users = await _context.Users.Select(user => user.UserName).ToListAsync();
-        return users;
-    }
-    [HttpGet("{id}")] // api/user/2
-    public async Task<ActionResult<AppUser>> GetUser(int id)
-    {
-        var user = await _context.Users.Where(user => user.Id == id).ToArrayAsync();
-        if (user.Count() == 0)
-        {
-            return NotFound(user);
-        }
-        return Ok(user[0]);
+        var users = await _userRepository.GetUsersAsync();
+        var usersDto = users.Select(user => new MemberDto(user));
+        return Ok(usersDto);
     }
 
-    [HttpDelete("delete/{id}")] // api/user/2
-    public async Task<ActionResult<AppUser>> DeleteUser(int id)
+    [HttpGet("{name}")] // api/users/verna
+    public async Task<ActionResult<MemberDto>> GetUser(string name)
     {
-        var user = await _context.Users.FindAsync(id);
-        if (user == null)
-        {
-            return NotFound(user);
-        }
-        _context.Users.Remove(user);
-        return Ok(user);
+        var user = await _userRepository.GetByUserNameAsync(name);
+        var userDto = new MemberDto(user);
+        return Ok(userDto);
     }
-
-
 }

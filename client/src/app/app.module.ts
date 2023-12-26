@@ -17,6 +17,7 @@ import { ReportsListComponent } from './components/reports/reports-list/reports-
 import { LayersListComponent } from './components/Layers/layers-list/layers-list.component';
 import { AddLayersComponent } from './components/Layers/add-layers/add-layers.component';
 import { SharedModule } from './_modules/shared.module';
+import { MembersListComponent } from './components/members-list/members-list.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SharedModule } from './_modules/shared.module';
     AddReportComponent,
     ReportsListComponent,
     LayersListComponent,
-    AddLayersComponent
+    AddLayersComponent,
+    MembersListComponent
   ],
   imports: [
     BrowserModule,
