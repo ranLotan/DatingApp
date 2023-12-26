@@ -2,7 +2,6 @@
 using API.Interfaces;
 using API.Services;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime.CompilerServices;
 
 namespace API.Extentions
 {
@@ -12,7 +11,8 @@ namespace API.Extentions
         {
             service.AddDbContext<DataContext>(option =>
             {
-                option.UseSqlite(config.GetConnectionString("DefaultConnection"));
+                //option.UseSqlite(config.GetConnectionString("DefaultConnection"));
+                option.UseNpgsql(config.GetConnectionString("DefaultConnection"));
             });
 
             service.AddCors();
