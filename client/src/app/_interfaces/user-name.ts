@@ -4,3 +4,7 @@ export interface User {
     error?: string;
     
 }
+export interface IReport{
+    lat: number
+    lng: number
+  }

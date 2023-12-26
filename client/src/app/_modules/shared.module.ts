@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 
@@ -16,7 +17,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
   ],
   exports: [
     BsDropdownModule,
-    ToastrModule
+    ToastrModule,
   ]
 })
 export class SharedModule { }
