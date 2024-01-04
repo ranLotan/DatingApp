@@ -1,3 +1,5 @@
 <p>reports-lists works!</p>
-<app-layers-tab [reports]="reports"> </app-layers-tab>
+<div *ngIf="reportsReady">
+    <app-layers-tab [reports]="reports"> </app-layers-tab>
+</div>
 

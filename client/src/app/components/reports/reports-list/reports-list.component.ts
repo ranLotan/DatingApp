@@ -11,6 +11,7 @@ import { MembersService } from 'src/app/_services/members.service';
 export class ReportsListComponent implements OnInit {
   private members: Member[] = [];
   public reports: IReport[] = [];
+  public reportsReady: boolean = false;
 
   constructor(private memberService: MembersService){}
    ngOnInit(): void {
@@ -23,6 +24,7 @@ export class ReportsListComponent implements OnInit {
         members => {
           this.members = members;
           this.initLocations();
+          this.reportsReady = true;
         }
     });
   }
