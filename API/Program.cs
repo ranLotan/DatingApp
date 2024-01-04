@@ -16,7 +16,12 @@ app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("ht
 app.UseAuthentication();
 app.UseAuthorization();
 
+//by defualt they files are searched in wwwroot folder 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.MapControllers();
+app.MapFallbackToController("Index", "Fallback");
 
 using var scope = app.Services.CreateScope(); // get access to all services in scope
 var services = scope.ServiceProvider;
