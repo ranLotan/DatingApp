@@ -5,7 +5,6 @@ namespace API.DTO
 {
     public class ReportDto
     {
-        [Required]
         public int Id;
 
 
@@ -18,6 +17,7 @@ namespace API.DTO
         public float Long { get; set; }
         public DateOnly ReportDate { get; set; }
 
+        public ReportDto() { }
         public ReportDto(AppReport report)
         {
             Title = report.Title;

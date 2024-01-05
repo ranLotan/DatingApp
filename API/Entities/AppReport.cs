@@ -6,6 +6,17 @@ namespace API.Entities
 {
     public class AppReport
     {
+        public AppReport() { }
+        public AppReport(ReportDto report, int userId)
+        {
+            Title = report.Title;
+            Description = report.Description;
+            Lat = report.Lat;
+            Long = report.Long;
+            ReportDate = report.ReportDate;
+            UserId = userId;
+        }
+
         public int Id { get; set; }
         public string Title { get; set; }
      
