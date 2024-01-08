@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './nav/nav.component';
@@ -41,7 +41,8 @@ import { MembersListComponent } from './components/members-list/members-list.com
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    NgbDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,35 @@
-<p>add-report works!</p>
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Report</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <form #addReportForm="ngForm" autocomplete="off">
+        <div class="mb-3">
+            <input type="text" name="title" [(ngModel)]="report.title" class="form-control mb-2" placeholder="Title">
+            <input type="text" name="description" [(ngModel)]="report.description" class="form-control mb-2" placeholder="Description">
+            <input type="number" name="lat" [(ngModel)]="report.lat" class="form-control mb-2" placeholder="Latitude">
+            <input type="number" name="long" [(ngModel)]="report.long" class="form-control mb-2" placeholder="Longtitude">
+            <label for="dateOfBirth">Date of birth</label>
+            <div class="input-group" >
+                <input
+                    id="dateOfBirth"
+                    class="form-control"
+                    placeholder="yyyy-mm-dd"
+                    name="reportDate"
+                    [(ngModel)]="report.reportDate"
+                    ngbDatepicker
+                    #dp="ngbDatepicker"
+                />
+                <button class="btn btn-outline-secondary bi bi-calendar3" type="button" (click)="dp.toggle()"></button>
+            </div>
+            <div class="text-center">
+
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary me-2" type="submit" (click)="submitReport()">Submit Report</button>
+    <button class="btn btn-secondary" type="button" (click)="addReportForm.resetForm()">Reset Report</button>
+</div>
+

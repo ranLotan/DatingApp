@@ -46,7 +46,7 @@ namespace API.Controllers
         }
 
         [HttpPost("addreport/{name}")]   // api/reports
-        public async Task<ActionResult<ReportDto>> AddReportByName([FromBody] ReportDto report, string name)
+        public async Task<ActionResult<bool>> AddReportByName([FromBody] ReportDto report, string name)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace API.Controllers
                 await _userRepository.SaveAllAsync();
 
                 // Optionally, you can return the created report or other relevant information
-                return Ok(new ReportDto(appReport));
+                return Ok(true);
             }
             catch (Exception ex)
             {

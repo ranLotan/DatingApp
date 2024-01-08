@@ -20,7 +20,7 @@ export class MembersService {
     return await this.http.get<Member>(this.url + 'users/' + userName, this.getHTTPOptions());
   }
 
-  private getHTTPOptions() { 
+  public getHTTPOptions() { 
     const userString = localStorage.getItem('user');
     if (!userString) { return; }
 
